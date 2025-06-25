@@ -43,8 +43,8 @@
 /*
  * TODO: 밑의 세 줄의 의미 분석
  */
-#if (PAGE_OFFSET & 0x1fffff) != 0
-#error PAGE_OFFSET must be at least 2MB aligned
+#if (PAGE_OFFSET & 0x1fffff) != 0 /* PAGE_OFFSET 값이 2MB(0x200000) 정렬 되어있지 않은 경우 */
+#error PAGE_OFFSET must be at least 2MB aligned /* 컴파일을 실패시키고 메시지 출력 */
 #endif
 
 /*
