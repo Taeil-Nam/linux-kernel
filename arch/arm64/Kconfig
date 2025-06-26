@@ -1405,6 +1405,7 @@ config ARM64_FORCE_52BIT
 	  should only enable this configuration option for stress testing userspace
 	  memory management code. If unsure say N here.
 
+# config 파일은 뭐지?
 config ARM64_VA_BITS
 	int
 	default 36 if ARM64_VA_BITS_36
