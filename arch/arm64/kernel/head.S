@@ -40,9 +40,7 @@
 #include "efi-header.S"			// UEFI(EFI) 기반 시스템에서 부팅될 때
 					// 필요한 매크로/상수 또는 구조체 정의
 
-/*
- * TODO: 밑의 세 줄의 의미 분석
- */
+/* PAGE_OFFSET은 커널 가상 주소의 시작 위치를 나타냄. */
 #if (PAGE_OFFSET & 0x1fffff) != 0 /* PAGE_OFFSET 값이 2MB(0x200000) 정렬 되어있지 않은 경우 */
 #error PAGE_OFFSET must be at least 2MB aligned /* 컴파일을 실패시키고 메시지 출력 */
 #endif
