@@ -1355,6 +1355,7 @@ choice
 	  space sizes. The level of translation table is determined by
 	  a combination of page size and virtual address space size.
 
+# bool "xx-bit"는 make menuconfig에서 나오는 선택 창을 말하며, 선택되면 true 값을 가짐.
 config ARM64_VA_BITS_36
 	bool "36-bit" if EXPERT
 	depends on PAGE_SIZE_16KB
@@ -1405,7 +1406,8 @@ config ARM64_FORCE_52BIT
 	  should only enable this configuration option for stress testing userspace
 	  memory management code. If unsure say N here.
 
-# config 파일은 뭐지?
+# Kconfig 파일 = 리눅스 커널 빌드 설정 파일.
+# ARM64_VA_BITS의 값은 if문 오른쪽 값이 true인 경우, if문 왼쪽 값으로 설정.
 config ARM64_VA_BITS
 	int
 	default 36 if ARM64_VA_BITS_36

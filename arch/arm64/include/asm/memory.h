@@ -41,11 +41,8 @@
  * VA_BITS - the maximum number of bits for virtual addresses.
  */
 
-/*
- * TODO: 바로 밑에 PAGE_OFFSET에 관련된 매크로 분석
- */
 #define VA_BITS			(CONFIG_ARM64_VA_BITS)	// VA_BITS = 가상 주소 공간이 사용할 수 있는 비트 수.
-#define _PAGE_OFFSET(va)	(-(UL(1) << (va)))	// UL과 va는 또 뭘까..
+#define _PAGE_OFFSET(va)	(-(UL(1) << (va)))	// UL(1) = 1UL, va = VA_BITS.
 #define PAGE_OFFSET		(_PAGE_OFFSET(VA_BITS))	// _PAGE_OFFSET(VA_BITS) 값을 PAGE_OFFSET이라는 이름으로 사용.
 #define KIMAGE_VADDR		(MODULES_END)
 #define MODULES_END		(MODULES_VADDR + MODULES_VSIZE)
