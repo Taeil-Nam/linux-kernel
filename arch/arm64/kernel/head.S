@@ -40,11 +40,16 @@
 #include "efi-header.S"			// UEFI(EFI) 기반 시스템에서 부팅될 때
 					// 필요한 매크로/상수 또는 구조체 정의
 
-/* PAGE_OFFSET은 커널 가상 주소의 시작 위치를 나타냄. */
-#if (PAGE_OFFSET & 0x1fffff) != 0 /* PAGE_OFFSET 값이 2MB(0x200000) 정렬 되어있지 않은 경우 */
-#error PAGE_OFFSET must be at least 2MB aligned /* 컴파일을 실패시키고 메시지 출력 */
+// PAGE_OFFSET은 커널 가상 주소의 시작 위치를 나타냄.
+// ARM64_VA_BITS_48 설정을 사용하는 경우(pc, server) PAGE_OFFSET = 0xFFFF_0000_0000_0000
+#if (PAGE_OFFSET & 0x1fffff) != 0		// PAGE_OFFSET 값이 2MB(0x200000) 정렬 되어있지 않은 경우
+#error PAGE_OFFSET must be at least 2MB aligned	// 컴파일을 실패시키고 메시지 출력
 #endif
 
+// MMU : 가상 메모리 주소 -> 물리 메모리 주소 변환 역할을 하는 메모리 관리용 하드웨어.
+// D-cache : 데이터 캐시
+// I-cache : 명령어 캐시
+// x0 = FDT의 물리 주소를 나타냄. FDT = 디바이스 트리(하드웨어 정보)
 /*
  * Kernel startup entry point.
  * ---------------------------
