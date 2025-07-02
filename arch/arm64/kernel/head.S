@@ -63,7 +63,7 @@
  * that are useful before the MMU is enabled. The allocations are described
  * in the entry routines.
  */
-	__HEAD
+	__HEAD	// .section ".head.text","ax"
 	/*
 	 * DO NOT MODIFY. Image header expected by Linux boot-loaders.
 	 */
