@@ -7,8 +7,6 @@
  * Copyright (C) 2003-2012 ARM Ltd.
  * Authors:	Catalin Marinas <catalin.marinas@arm.com>
  *		Will Deacon <will.deacon@arm.com>
- * Comments:	Taeil Nam <nam0314@gmail.com>
- *		2025/06/23
  */
 
 #include <linux/linkage.h>	// 함수 선언 및 어셈블리 linkage 관련 매크로
@@ -38,11 +36,7 @@
 #include <asm/virt.h>			// 가상화 하드웨어 지원 관련 정의
 
 #include "efi-header.S"			// UEFI(EFI) 기반 시스템에서 부팅될 때
-					// 필요한 매크로/상수 또는 구조체 정의
 
-/*
- * TODO: 밑의 세 줄의 의미 분석
- */
 #if (PAGE_OFFSET & 0x1fffff) != 0
 #error PAGE_OFFSET must be at least 2MB aligned
 #endif
