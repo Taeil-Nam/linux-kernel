@@ -7,23 +7,27 @@
 #include <linux/pe.h>
 #include <linux/sizes.h>
 
-	.macro	efi_signature_nop
-#ifdef CONFIG_EFI
-.L_head:
+	.macro	efi_signature_nop	// start of macro(code block) 'efi_signature_nop'
+#ifdef CONFIG_EFI	// Kernel 빌드 시 EFI 부팅이 활성화 되어 있는 경우
+.L_head:		// label(.L_head) = 코드의 특정 위치를 가리키는 역할
 	/*
 	 * This ccmp instruction has no meaningful effect except that
 	 * its opcode forms the magic "MZ" signature required by UEFI.
 	 */
-	ccmp	x18, #0, #0xd, pl
-#else
+	ccmp	x18, #0, #0xd, pl	// 명령어가 기계어로 변환되었을 때 값이 "0xd538d080"가 되도록 함
+					// ccmp 명령어는 아무런 연산이 없고, 기계어로 나타나 있기만 함
+#else	// EFI 부팅이 활성화 되어있지 않은 경우
 	/*
 	 * Bootloaders may inspect the opcode at the start of the kernel
 	 * image to decide if the kernel is capable of booting via UEFI.
 	 * So put an ordinary NOP here, not the "MZ.." pseudo-nop above.
 	 */
-	nop
+	nop	// = hint #0 = 0xd503201f =  아무 일도 하지 않는 명령어라는 뜻.
+		// 어셈블러가 nop를 보면 'hint #0'으로 변환 함.
+		// 부트로더가 커널 시작의 opcode를 확인해서 UEFI 부팅 가능 여부를 판단할 수 있으므로,
+		// 아무런 일도 하지 않는 nop를 넣어 둠.
 #endif
-	.endm
+	.endm	// end of macro(code block) 'efi_signature_nop'
 
 	.macro	__EFI_PE_HEADER
 #ifdef CONFIG_EFI
