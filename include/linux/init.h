@@ -95,7 +95,11 @@
 #endif
 
 /* For assembly routines */
-#define __HEAD		.section	".head.text","ax"
+// .section은 특정 코드들이 모여있는 공간(section).
+// 리눅스 커널을 빌드할 때, 어셈블러가 섹션 코드를 구분하여 오브젝트 파일(.o)을 생성.
+// 링커는 링커 스크립트를 참고하여 최종 실행 파일에 섹션들의 순서와 섹션의 메모리 위치를 결정.
+// 링커 스크립트 내용 = arch/arm64/kernel/vmlinux.lds.S:153
+#define __HEAD		.section	".head.text","ax"	// ".head.text" 라는 이름의 섹션을 나타냄. 메모리에 적재되어야 하고(a), 실행 가능해야함(x).
 #define __INIT		.section	".init.text","ax"
 #define __FINIT		.previous
 

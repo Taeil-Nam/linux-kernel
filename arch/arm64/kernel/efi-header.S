@@ -24,8 +24,7 @@
 	 */
 	nop	// = hint #0 = 0xd503201f =  아무 일도 하지 않는 명령어라는 뜻.
 		// 어셈블러가 nop를 보면 'hint #0'으로 변환 함.
-		// 부트로더가 커널 시작의 opcode를 확인해서 UEFI 부팅 가능 여부를 판단할 수 있으므로,
-		// 아무런 일도 하지 않는 nop를 넣어 둠.
+		// 전통적인 부팅에서는 UEFI 인식을 위한 특정 값이 필요 없음을 명시적으로 나타냄.
 #endif
 	.endm	// end of macro(code block) 'efi_signature_nop'
 

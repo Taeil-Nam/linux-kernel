@@ -165,8 +165,9 @@ SECTIONS
 		*(.ARM.attributes)
 	}
 
-	. = KIMAGE_VADDR;
+	. = KIMAGE_VADDR;	// = 0xFFFF_F000_8000_0000.
 
+	// TODO(2025/07/08): 해석 필요.
 	.head.text : {
 		_text = .;
 		HEAD_TEXT

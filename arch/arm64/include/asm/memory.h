@@ -41,13 +41,13 @@
  * VA_BITS - the maximum number of bits for virtual addresses.
  */
 
-#define VA_BITS			(CONFIG_ARM64_VA_BITS)	// VA_BITS = 가상 주소 공간이 사용할 수 있는 비트 수.
-#define _PAGE_OFFSET(va)	(-(UL(1) << (va)))	// UL(1) = 1UL, va = VA_BITS.
-#define PAGE_OFFSET		(_PAGE_OFFSET(VA_BITS))	// _PAGE_OFFSET(VA_BITS) 값을 PAGE_OFFSET이라는 이름으로 사용.
-#define KIMAGE_VADDR		(MODULES_END)
-#define MODULES_END		(MODULES_VADDR + MODULES_VSIZE)
-#define MODULES_VADDR		(_PAGE_END(VA_BITS_MIN))
-#define MODULES_VSIZE		(SZ_2G)
+#define VA_BITS			(CONFIG_ARM64_VA_BITS)		// VA_BITS = 가상 주소 공간이 사용할 수 있는 비트 수.
+#define _PAGE_OFFSET(va)	(-(UL(1) << (va)))		// UL(1) = 1UL, va = VA_BITS.
+#define PAGE_OFFSET		(_PAGE_OFFSET(VA_BITS))		// _PAGE_OFFSET(VA_BITS) 값을 PAGE_OFFSET이라는 이름으로 사용.
+#define KIMAGE_VADDR		(MODULES_END)			// 0xFFFF_F000_8000_0000.
+#define MODULES_END		(MODULES_VADDR + MODULES_VSIZE)	// 0xFFFF_F000_0000_0000 + 0x8000_0000 = 0xFFFF_F000_8000_0000.
+#define MODULES_VADDR		(_PAGE_END(VA_BITS_MIN))	// 0xFFFF_F000_0000_0000. (VA_BITS == 48이라고 가정)
+#define MODULES_VSIZE		(SZ_2G)				// 2G size.
 #define VMEMMAP_START		(VMEMMAP_END - VMEMMAP_SIZE)
 #define VMEMMAP_END		(-UL(SZ_1G))
 #define PCI_IO_START		(VMEMMAP_END + SZ_8M)
@@ -64,7 +64,7 @@
 #define VA_BITS_MIN		(VA_BITS)
 #endif
 
-#define _PAGE_END(va)		(-(UL(1) << ((va) - 1)))
+#define _PAGE_END(va)		(-(UL(1) << ((va) - 1)))	// VA_BITS == 48인 경우, 0xFFFF_F000_0000_0000
 
 #define KERNEL_START		_text
 #define KERNEL_END		_end
