@@ -7,7 +7,7 @@
 #include <linux/pe.h>
 #include <linux/sizes.h>
 
-	.macro	efi_signature_nop	// start of macro(code block) 'efi_signature_nop'
+	.macro	efi_signature_nop	// 'efi_signature_nop'라는 매크로(code block) 시작점
 #ifdef CONFIG_EFI	// Kernel 빌드 시 EFI 부팅이 활성화 되어 있는 경우
 .L_head:		// label(.L_head) = 코드의 특정 위치를 가리키는 역할
 	/*
