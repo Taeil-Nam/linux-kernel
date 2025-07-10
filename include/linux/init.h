@@ -100,7 +100,7 @@
 // 링커는 링커 스크립트를 참고하여 최종 실행 파일에 섹션들의 순서와 섹션의 메모리 위치를 결정.
 // 링커 스크립트 내용 = arch/arm64/kernel/vmlinux.lds.S:153
 #define __HEAD		.section	".head.text","ax"	// ".head.text" 라는 이름의 섹션을 나타냄. 메모리에 적재되어야 하고(a), 실행 가능해야함(x).
-#define __INIT		.section	".init.text","ax"
+#define __INIT		.section	".init.text","ax"	// ".init.text" 라는 이름의 섹션을 나타냄. 메모리에 적재되어야 하고(a), 실행 가능해야함(x).
 #define __FINIT		.previous
 
 #define __INITDATA	.section	".init.data","aw",%progbits

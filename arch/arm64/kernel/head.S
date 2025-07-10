@@ -93,7 +93,8 @@
 	 *  x20        primary_entry() .. __primary_switch()    CPU boot mode
 	 *  x21        primary_entry() .. start_kernel()        FDT pointer passed at boot in x0
 	 */
-// TODO(2025/07/09 - 코드 분석 필요)
+// SYM_CODE_START(name) = name이라는 이름을 가지는 전역 코드 심볼의 시작을 정의.
+// 다른 어셈블리 파일이나 C 파일에서 이 심볼 호출 및 참조 가능.
 SYM_CODE_START(primary_entry)
 	bl	record_mmu_state
 	bl	preserve_boot_args
@@ -142,7 +143,7 @@ SYM_CODE_START(primary_entry)
 	b	__primary_switch
 SYM_CODE_END(primary_entry)
 
-	__INIT
+	__INIT	// .section        ".init.text","ax"
 SYM_CODE_START_LOCAL(record_mmu_state)
 	mrs	x19, CurrentEL
 	cmp	x19, #CurrentEL_EL2
