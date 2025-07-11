@@ -70,6 +70,8 @@
 	 * DO NOT MODIFY. Image header expected by Linux boot-loaders.
 	 */
 	efi_signature_nop			// special NOP to identity as PE/COFF executable
+	// b 명령어는 주어진 주소로 분기하라는 명령어.
+	// C 언어의 goto문과 동일.
 	b	primary_entry			// branch to kernel start, magic
 	.quad	0				// Image load offset from start of RAM, little-endian
 	le64sym	_kernel_size_le			// Effective size of kernel image, little-endian
